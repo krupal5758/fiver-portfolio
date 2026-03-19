@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Content Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0A0A0B;
+  --paper:#F5F0E8;
+  --cream:#EDE8DC;
+  --gold:#C9A84C;
+  --gold2:#E8C96A;
+  --teal:#0D9488;
+  --coral:#E8543A;
+  --muted:#6B6560;
+  --border:#D4CFC4;
+  --card:#FDFAF4;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ── CUSTOM CURSOR ── */
+#cursor{
+  position:fixed;width:10px;height:10px;
+  background:var(--gold);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .2s,height .2s,background .2s;
+  mix-blend-mode:multiply;
+}
+#cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1.5px solid var(--gold);border-radius:50%;
+  pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform .08s ease,width .25s,height .25s,opacity .2s;
+  opacity:.5;
+}
+body:hover #cursor{width:10px;height:10px}
+
+/* ── NOISE TEXTURE ── */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.035'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9997;opacity:.6;
+}
+
+/* ── MARQUEE STRIP ── */
+.marquee-strip{
+  background:var(--ink);color:var(--gold);
+  font-family:'Outfit',sans-serif;font-size:.72rem;
+  font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  padding:10px 0;overflow:hidden;white-space:nowrap;
+}
+.marquee-inner{display:inline-block;animation:marquee 28s linear infinite}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-sep{margin:0 24px;color:var(--gold2);opacity:.6}
+
+/* ── NAV ── */
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 6%;
+  border-bottom:1px solid var(--border);
+  background:rgba(245,240,232,.92);
+  backdrop-filter:blur(12px);
+  position:sticky;top:0;z-index:100;
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.3rem;font-weight:900;
+  letter-spacing:-0.5px;
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{
+  font-size:.83rem;font-weight:500;
+  color:var(--muted);text-decoration:none;
+  letter-spacing:.5px;
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-hire{
+  background:var(--ink);color:var(--paper);
+  border:none;padding:9px 22px;
+  font-family:'Outfit',sans-serif;font-size:.83rem;font-weight:500;
+  letter-spacing:.5px;cursor:none;
+  transition:background .2s,transform .15s;
+}
+.nav-hire:hover{background:var(--gold);color:var(--ink);transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  min-height:92vh;
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;
+  padding:80px 6%;
+  gap:60px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;
+  right:-120px;top:50%;transform:translateY(-50%);
+  width:600px;height:600px;
+  background:radial-gradient(circle,rgba(201,168,76,.12) 0%,transparent 65%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:.72rem;font-weight:600;letter-spacing:3px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:22px;
+}
+.hero-eyebrow::before{
+  content:'';display:block;width:28px;height:1.5px;background:var(--teal);
+}
+.hero-h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,5.5vw,5rem);
+  font-weight:900;line-height:1.02;
+  letter-spacing:-2px;margin-bottom:24px;
+}
+.hero-h1 em{
+  font-style:italic;color:var(--gold);
+  display:block;
+}
+.hero-desc{
+  font-size:1.05rem;color:var(--muted);
+  line-height:1.75;max-width:420px;
+  margin-bottom:36px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-ink{
+  background:var(--ink);color:var(--paper);
+  padding:13px 28px;font-family:'Outfit',sans-serif;
+  font-size:.9rem;font-weight:500;border:none;cursor:none;
+  letter-spacing:.3px;
+  transition:background .2s,transform .15s;
+}
+.btn-ink:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;color:var(--ink);
+  padding:13px 28px;font-family:'Outfit',sans-serif;
+  font-size:.9rem;font-weight:500;
+  border:1.5px solid var(--border);cursor:none;
+  transition:border-color .2s,transform .15s;
+}
+.btn-outline:hover{border-color:var(--ink);transform:translateY(-2px)}
+
+/* hero right — big editorial number */
+.hero-right{
+  display:flex;flex-direction:column;gap:20px;
+  align-items:flex-start;
+}
+.hero-stat-big{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(6rem,12vw,11rem);
+  font-weight:900;line-height:.9;
+  color:var(--ink);letter-spacing:-6px;
+  position:relative;
+}
+.hero-stat-big span{
+  display:block;font-size:1rem;
+  letter-spacing:3px;font-family:'Outfit',sans-serif;
+  font-weight:600;color:var(--muted);
+  margin-top:12px;
+}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.htag{
+  font-size:.72rem;font-weight:600;letter-spacing:1.5px;
+  text-transform:uppercase;padding:6px 14px;
+  border:1px solid var(--border);color:var(--muted);
+  background:var(--card);
+}
+
+/* ── DIVIDER ── */
+.divider{
+  height:1px;background:var(--border);margin:0 6%;
+}
+.section-divider{
+  display:flex;align-items:center;gap:20px;
+  padding:60px 6% 0;
+}
+.section-divider::after{
+  content:'';flex:1;height:1px;background:var(--border);
+}
+.section-eyebrow{
+  font-size:.7rem;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;
+}
+
+/* ── CLIENTS INTRO ── */
+.clients-intro{
+  padding:60px 6% 80px;
+  display:grid;grid-template-columns:1fr 2fr;
+  gap:60px;align-items:start;
+}
+.clients-intro h2{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:900;
+  letter-spacing:-1px;line-height:1.15;
+  position:sticky;top:100px;
+}
+.clients-intro h2 em{font-style:italic;color:var(--gold)}
+
+/* ── TABS ── */
+.tab-row{
+  display:flex;gap:0;
+  border-bottom:2px solid var(--border);
+  margin-bottom:40px;
+}
+.tab-btn{
+  font-family:'Outfit',sans-serif;font-size:.82rem;
+  font-weight:600;letter-spacing:1px;text-transform:uppercase;
+  padding:12px 24px;background:transparent;border:none;
+  color:var(--muted);cursor:none;
+  position:relative;transition:color .2s;
+}
+.tab-btn::after{
+  content:'';position:absolute;bottom:-2px;left:0;right:0;
+  height:2px;background:var(--ink);
+  transform:scaleX(0);transition:transform .25s;
+}
+.tab-btn.active{color:var(--ink)}
+.tab-btn.active::after{transform:scaleX(1)}
+.tab-btn:hover{color:var(--ink)}
+
+.client-panel{display:none}
+.client-panel.active{display:block}
+
+.client-header{
+  display:flex;align-items:flex-start;
+  justify-content:space-between;
+  margin-bottom:32px;flex-wrap:wrap;gap:16px;
+}
+.client-name{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;font-weight:900;
+  letter-spacing:-1px;
+}
+.client-badge{
+  font-size:.7rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;padding:6px 14px;
+  background:var(--ink);color:var(--paper);
+}
+.client-meta{
+  font-size:.85rem;color:var(--muted);
+  margin-top:4px;line-height:1.6;
+}
+
+/* ── POST CARDS ── */
+.posts-grid{
+  display:grid;grid-template-columns:1fr;gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+}
+.post-card{
+  background:var(--card);padding:28px 30px;
+  cursor:none;transition:background .2s;
+  position:relative;overflow:hidden;
+}
+.post-card:hover{background:#fff}
+.post-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:var(--gold);
+  transform:scaleY(0);transform-origin:bottom;
+  transition:transform .3s ease;
+}
+.post-card:hover::before{transform:scaleY(1)}
+
+.post-type-label{
+  font-size:.65rem;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--teal);
+  margin-bottom:10px;
+}
+.post-hook{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;font-weight:700;
+  line-height:1.4;margin-bottom:0;
+  color:var(--ink);
+}
+
+/* expand toggle */
+.post-expand-btn{
+  display:flex;align-items:center;gap:8px;
+  margin-top:14px;font-size:.75rem;font-weight:600;
+  letter-spacing:1px;text-transform:uppercase;
+  color:var(--muted);background:none;border:none;
+  cursor:none;padding:0;transition:color .2s;
+}
+.post-expand-btn:hover{color:var(--ink)}
+.post-expand-btn svg{transition:transform .25s}
+.post-expand-btn.open svg{transform:rotate(180deg)}
+
+.post-full{
+  max-height:0;overflow:hidden;
+  transition:max-height .4s ease,opacity .3s;
+  opacity:0;
+}
+.post-full.open{max-height:800px;opacity:1}
+
+.post-body-text{
+  font-size:.92rem;color:var(--muted);
+  line-height:1.85;margin-top:16px;
+  white-space:pre-line;
+}
+.post-hashtags{
+  font-size:.82rem;color:var(--teal);
+  margin-top:12px;line-height:1.6;
+}
+
+/* ── STRATEGY BLOCK ── */
+.strategy-section{
+  margin-top:40px;
+  border:1px solid var(--border);
+  background:var(--ink);
+  padding:32px;
+}
+.strategy-title{
+  font-size:.7rem;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--gold);
+  margin-bottom:24px;
+}
+.strategy-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:20px;
+}
+.strategy-item{}
+.s-label{
+  font-size:.65rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;color:var(--gold2);
+  margin-bottom:6px;
+  opacity:.7;
+}
+.s-val{
+  font-size:.88rem;color:rgba(245,240,232,.75);
+  line-height:1.65;
+}
+
+/* ── WHY ME SECTION ── */
+.why-section{
+  padding:80px 6%;
+  background:var(--ink);
+  color:var(--paper);
+}
+.why-top{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:end;
+  margin-bottom:60px;
+}
+.why-h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,4vw,3.5rem);
+  font-weight:900;letter-spacing:-2px;line-height:1.1;
+}
+.why-h2 em{font-style:italic;color:var(--gold)}
+.why-desc{
+  font-size:1rem;color:rgba(245,240,232,.6);
+  line-height:1.8;align-self:end;
+}
+.why-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(255,255,255,.08);
+}
+.why-card{
+  background:var(--ink);padding:32px 28px;
+  border-top:1px solid rgba(255,255,255,.08);
+  transition:background .2s;
+}
+.why-card:hover{background:#111}
+.why-num{
+  font-family:'Playfair Display',serif;
+  font-size:3.5rem;font-weight:900;
+  color:var(--gold);letter-spacing:-3px;
+  line-height:1;margin-bottom:16px;
+  opacity:.4;
+}
+.why-title{
+  font-weight:600;font-size:1rem;
+  margin-bottom:8px;color:var(--paper);
+}
+.why-text{
+  font-size:.88rem;color:rgba(245,240,232,.5);
+  line-height:1.7;
+}
+
+/* ── PROCESS ── */
+.process-section{
+  padding:80px 6%;
+  display:grid;grid-template-columns:1fr 2fr;
+  gap:60px;align-items:start;
+}
+.process-left h2{
+  font-family:'Playfair Display',serif;
+  font-size:2.2rem;font-weight:900;
+  letter-spacing:-1px;line-height:1.15;
+  position:sticky;top:100px;
+}
+.process-left h2 em{font-style:italic;color:var(--coral)}
+.process-steps{display:flex;flex-direction:column;gap:0}
+.p-step{
+  display:grid;grid-template-columns:60px 1fr;
+  gap:20px;padding:28px 0;
+  border-bottom:1px solid var(--border);
+  align-items:start;
+}
+.p-step:last-child{border:none}
+.p-num{
+  font-family:'Playfair Display',serif;
+  font-size:2.8rem;font-weight:900;
+  color:var(--border);line-height:1;
+  letter-spacing:-2px;
+}
+.p-title{
+  font-weight:600;font-size:1rem;
+  margin-bottom:6px;
+}
+.p-desc{font-size:.88rem;color:var(--muted);line-height:1.7}
+
+/* ── CTA FOOTER ── */
+.cta-footer{
+  background:var(--gold);
+  padding:80px 6%;
+  display:grid;grid-template-columns:2fr 1fr;
+  align-items:center;gap:40px;
+}
+.cta-h2{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:900;letter-spacing:-2px;
+  line-height:1.1;color:var(--ink);
+}
+.cta-h2 em{font-style:italic}
+.cta-sub{
+  font-size:.95rem;color:rgba(10,10,11,.65);
+  line-height:1.7;margin-top:12px;
+}
+.btn-dark-big{
+  background:var(--ink);color:var(--paper);
+  padding:16px 36px;font-family:'Outfit',sans-serif;
+  font-size:1rem;font-weight:600;border:none;cursor:none;
+  white-space:nowrap;
+  transition:transform .15s,opacity .2s;
+}
+.btn-dark-big:hover{transform:translateY(-2px);opacity:.9}
+
+/* ── FINAL FOOTER ── */
+footer{
+  background:var(--ink);padding:32px 6%;
+  display:flex;align-items:center;
+  justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,.05);
+}
+.footer-logo{
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem;font-weight:900;color:var(--paper);
+}
+.footer-logo span{color:var(--gold)}
+footer p{font-size:.78rem;color:rgba(245,240,232,.3)}
+
+/* ── ANIMATIONS ── */
+.fade-up{
+  opacity:0;transform:translateY(30px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding:60px 5%}
+  .hero-right{display:none}
+  .clients-intro{grid-template-columns:1fr}
+  .strategy-grid{grid-template-columns:1fr}
+  .why-top{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .process-section{grid-template-columns:1fr}
+  .cta-footer{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <span class="marquee-inner">
+    LinkedIn Content Writing <span class="marquee-sep">✦</span>
+    Indian Tech Startups <span class="marquee-sep">✦</span>
+    Scroll-Stopping Posts <span class="marquee-sep">✦</span>
+    Hinglish Tone <span class="marquee-sep">✦</span>
+    EdTech &amp; HRTech <span class="marquee-sep">✦</span>
+    Human. Not AI-sounding. <span class="marquee-sep">✦</span>
+    LinkedIn Content Writing <span class="marquee-sep">✦</span>
+    Indian Tech Startups <span class="marquee-sep">✦</span>
+    Scroll-Stopping Posts <span class="marquee-sep">✦</span>
+    Hinglish Tone <span class="marquee-sep">✦</span>
+    EdTech &amp; HRTech <span class="marquee-sep">✦</span>
+    Human. Not AI-sounding. <span class="marquee-sep">✦</span>
+  </span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">content<span>craft</span></span>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#why">Why me</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+  <button class="nav-hire" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Hire me →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow">LinkedIn Content Writer</div>
+    <h1 class="hero-h1">
+      Posts that make<br>founders stop<br>
+      <em>and read.</em>
+    </h1>
+    <p class="hero-desc">I write LinkedIn content for Indian tech startups. Honest tone, Hinglish energy, real strategy — not corporate fluff that nobody reads.</p>
+    <div class="hero-actions">
+      <button class="btn-ink" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">See my work ↓</button>
+      <button class="btn-outline" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Work with me</button>
+    </div>
+    <div class="hero-tags" style="margin-top:28px">
+      <span class="htag">EdTech</span>
+      <span class="htag">HRTech</span>
+      <span class="htag">SaaS</span>
+      <span class="htag">Tier 2 India</span>
+      <span class="htag">Hinglish</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-stat-big">
+      10<span>Posts written<br>for this portfolio</span>
+    </div>
+    <div style="display:flex;gap:40px;margin-top:8px">
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;letter-spacing:-2px;line-height:1">2</div>
+        <div style="font-size:.78rem;letter-spacing:2px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:4px">Niches covered</div>
+      </div>
+      <div>
+        <div style="font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;letter-spacing:-2px;line-height:1">48h</div>
+        <div style="font-size:.78rem;letter-spacing:2px;color:var(--muted);font-weight:600;text-transform:uppercase;margin-top:4px">Turnaround</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-divider">
+    <span class="section-eyebrow">Portfolio Work</span>
+  </div>
+
+  <div class="clients-intro">
+    <div>
+      <h2>Two startups.<br><em>Two niches.</em><br>Five posts each.</h2>
+    </div>
+    <div>
+      <!-- TABS -->
+      <div class="tab-row">
+        <button class="tab-btn active" onclick="switchTab('learnkaro',this)">LearnKaro — EdTech</button>
+        <button class="tab-btn" onclick="switchTab('devhire',this)">DevHire — HRTech</button>
+      </div>
+
+      <!-- LEARNKARO PANEL -->
+      <div class="client-panel active" id="panel-learnkaro">
+        <div class="client-header">
+          <div>
+            <div class="client-name">LearnKaro</div>
+            <div class="client-meta">Vernacular EdTech · Hindi, Gujarati, Marathi courses · Tier 2/3 students aged 18–25</div>
+          </div>
+          <div class="client-badge">EdTech</div>
+        </div>
+
+        <div class="posts-grid">
+
+          <div class="post-card">
+            <div class="post-type-label">01 — Founder Story</div>
+            <div class="post-hook">My cousin failed his MBA entrance exam because he couldn't understand the concepts in English.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">He's not dumb. He scored 91% in 12th. He can solve problems faster than most people I know.
+
+But when the explanation is in a language that isn't yours, something just doesn't click. I watched him study for 8 months. He'd read the same paragraph 5 times — not because he was lazy — because half his brain was busy translating.
+
+That's when I stopped building what I thought people needed and started actually listening.
+
+We built LearnKaro for students like my cousin. Engineering, commerce, computer science — explained in Hindi, Gujarati, Marathi. Not translated. Taught. The way a good didi or bhaiya would explain it sitting next to you.
+
+My cousin cleared his exam last month. He said the thing that helped most was finally feeling like the course was made for him.
+
+That's the only metric I care about.</div>
+              <div class="post-hashtags">#EdTech #LearnKaro #VernacularLearning #Tier2India #FounderStory #HindiEducation #BharatKaPadhai</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label">02 — Data & Stats</div>
+            <div class="post-hook">65% of Indian college students understand better in their mother tongue. Only 8% of online courses offer that option.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">Let that gap sink in for a second.
+
+We're talking about 3+ crore students in tier 2 and tier 3 cities — students who are sharp, ambitious, and genuinely hungry to learn. But the EdTech industry keeps building for English-first metros.
+
+Here's what the data actually says:
+→ Students learning in their native language retain 40% more information
+→ Dropout rates in vernacular programs are 3x lower than English-only courses
+→ Yet less than 12% of India's ed-tech content is available in regional languages
+
+The students aren't the problem. The content is.
+
+We built LearnKaro to fix that — one Gujarati explainer video, one Hindi mock test at a time.</div>
+              <div class="post-hashtags">#EdTech #VernacularEducation #IndiaData #LearnKaro #TierTwoCities #DigitalBharat</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label">03 — Controversial Opinion</div>
+            <div class="post-hook">Teaching every Indian student in English isn't ambition. It's laziness dressed up as a policy.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">Unpopular opinion incoming — but someone has to say it.
+
+We've convinced ourselves that English = opportunity. And yes, English matters. I'm not saying throw it out.
+
+But making it the only medium of instruction for millions of students who grew up speaking Hindi, Marathi, Gujarati at home? That's not education. That's gatekeeping.
+
+A student who truly understands thermodynamics in Marathi will outsmart a student who memorized it in English any day.
+
+The irony? IITs and IIMs are actively pushing for multilingual teaching now. The research is clear.
+
+But in the colleges of Nashik, Rajkot, Jhansi — students are still failing exams they understand, in a language they don't.
+
+That's not their failure. That's ours.
+
+Agree or disagree — tell me below.</div>
+              <div class="post-hashtags">#IndianEducation #HotTake #VernacularLearning #LearnKaro #Bharat #CollegeStudents</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label">04 — Practical Tip</div>
+            <div class="post-hook">If you've read the same page three times and still don't get it — the problem isn't you. It's probably the language.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">Here's a study hack that actually works for students in India:
+
+When you're stuck on a concept, stop trying to understand it in English first.
+
+1. Read the topic once in English (just to get the words)
+2. Now explain it out loud to yourself in your mother tongue
+3. If you can't explain it in your own language, you haven't understood it yet
+4. Only then go back and match it with the English terms
+
+This is the Feynman Technique — desi style.
+
+Your brain processes things faster in the language it grew up thinking in. Use that. Don't fight it.
+
+We use this exact principle in every LearnKaro course. Concept first, language second.
+
+Save this. Share it with one batchmate who's struggling right now.</div>
+              <div class="post-hashtags">#StudyTips #CollegeStudents #LearnKaro #FeynmanTechnique #SmartStudy #IndianStudents</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label">05 — Free Trial CTA</div>
+            <div class="post-hook">What if you could finally study for your exams without Googling every third word?</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">That's what LearnKaro is built for.
+
+Online courses for college students — BCA, BCom, BSc, Engineering — in Hindi, Gujarati, and Marathi. No complicated English. No robotic voice-overs. Real teachers explaining real concepts in the language that actually makes sense to you.
+
+Free 7-day trial. No credit card. No catch.
+
+In 7 days you'll get:
+→ Full access to your first course module
+→ Practice questions + solutions in your language
+→ A study plan built around your actual semester
+
+More than 12,000 students from Rajkot, Aurangabad, Indore, and Bhopal have already started.
+
+Drop a "LearnKaro" in the comments and we'll send you the link.
+
+Padhai should feel like understanding — not like translation. Koi risk nahi hai.</div>
+              <div class="post-hashtags">#FreeTrial #LearnKaro #HindiCourses #GujaratiLearning #OnlineLearning #TierTwoCities</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="strategy-section">
+          <div class="strategy-title">✦ Content Strategy for LearnKaro</div>
+          <div class="strategy-grid">
+            <div class="strategy-item">
+              <div class="s-label">Post Frequency</div>
+              <div class="s-val">Tue (tip) · Thu (story/opinion) · Sat (CTA or engagement)</div>
+            </div>
+            <div class="strategy-item">
+              <div class="s-label">Voice & Tone</div>
+              <div class="s-val">Always write as a founder or student — never as a brand. First-person. Hinglish where natural.</div>
+            </div>
+            <div class="strategy-item">
+              <div class="s-label">Content Mix</div>
+              <div class="s-val">40% student tips · 30% founder stories · 20% data & opinion · 10% CTAs</div>
+            </div>
+            <div class="strategy-item">
+              <div class="s-label">Growth Lever</div>
+              <div class="s-val">End every post with a question or "drop a comment" prompt to boost LinkedIn reach organically.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEVHIRE PANEL -->
+      <div class="client-panel" id="panel-devhire">
+        <div class="client-header">
+          <div>
+            <div class="client-name">DevHire</div>
+            <div class="client-meta">HRTech startup · Async-first engineering recruitment · Target: CTOs & startup founders</div>
+          </div>
+          <div class="client-badge" style="background:var(--coral)">HRTech</div>
+        </div>
+
+        <div class="posts-grid">
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--coral)">01 — Founder Story</div>
+            <div class="post-hook">We rejected a candidate with 4 years of experience because he couldn't explain his own project in plain English.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">Not because he wasn't smart. He clearly was.
+
+But in a 30-minute interview, communication IS the product. If you can't explain what you built and why — how do you explain it to a client at 11pm when something breaks?
+
+That moment broke something in me. We were measuring the wrong things.
+
+So I stopped building a hiring tool and started building a communication filter. DevHire doesn't just match skills to JDs. It scores how well developers explain their thinking — in writing, in async video, in real problem walkthroughs.
+
+Three months in, our clients are seeing 40% fewer first-month dropoffs.
+
+The best engineer for your team isn't always the one with the best GitHub. Sometimes it's the one who says "here's what I tried and why it didn't work."</div>
+              <div class="post-hashtags">#DevHire #TechHiring #StartupIndia #EngineeringCulture #FounderStory #HRTech</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--coral)">02 — Data & Stats</div>
+            <div class="post-hook">Indian tech startups lose an average of ₹3.2 lakh per bad engineering hire. Most don't even know it happened.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">That number includes: recruiting cost, onboarding time, team distraction, delayed product cycles, and the quiet cost of a team that stops trusting the hiring process.
+
+Here's what our data from 200+ startup hires shows:
+→ 67% of failed hires looked perfect on paper
+→ The #1 reason? Miscommunication — not missing skills
+→ Startups that test async communication upfront see 3x better 90-day retention
+
+Skills you can train. Communication style is much harder to fix after onboarding.
+
+DevHire's async-first screening adds 12 minutes to your process and removes months of regret.</div>
+              <div class="post-hashtags">#TechHiring #StartupIndia #DevHire #EngineeringTeams #HRData #ProductTeams</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--coral)">03 — Hot Take</div>
+            <div class="post-hook">LeetCode interviews are producing anxious coders, not great engineers. And startups are paying for it.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">Hot take that I'll stand behind:
+
+If your entire interview is 3 rounds of algorithmic puzzles with no discussion of past work, real tradeoffs, or team dynamics — you're not hiring engineers. You're hiring test-takers.
+
+The best engineers I've met couldn't reverse a binary tree under pressure. But they could explain a system they built, defend a decision they made, and admit where they were wrong.
+
+Those are the people who ship.
+
+I'm not saying ditch technical assessment. I'm saying your 4-hour LeetCode gauntlet is filtering out exactly the senior, pragmatic builders your startup needs most.
+
+The companies winning on talent right now test judgment, not just syntax.</div>
+              <div class="post-hashtags">#LeetCode #TechHiring #EngineeringCulture #DevHire #StartupIndia #SoftwareEngineering</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--coral)">04 — Practical Tip</div>
+            <div class="post-hook">Before your next engineering interview, ask candidates one question: "Tell me about a decision you'd make differently today."</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">This single question tells you more than any coding round.
+
+Here's what you're actually testing:
+→ Self-awareness — do they know their gaps?
+→ Growth mindset — are they learning from mistakes?
+→ Communication — can they narrate their own thinking clearly?
+→ Honesty — or are they performing perfection for you?
+
+The best answer isn't the most dramatic failure story. It's a specific, thoughtful reflection that shows they paid attention.
+
+Candidates who answer this well almost always become strong long-term team members.
+
+Add it to your process this week. Takes 5 minutes. Worth months of misfire avoidance.</div>
+              <div class="post-hashtags">#InterviewTips #TechHiring #DevHire #StartupIndia #EngineeringLeaders #Recruitment</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--coral)">05 — CTA Post</div>
+            <div class="post-hook">You've made 3 engineering hires this year. How many are still performing exactly as you expected?</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">If that question made you pause — you're not alone.
+
+Most early-stage startups hire fast and fix slow. DevHire flips that.
+
+We help Indian tech startups screen developers through:
+→ Async video walkthroughs (no scheduling chaos)
+→ Real-world problem responses (not LeetCode)
+→ Communication scoring built for remote/hybrid teams
+
+We're onboarding 10 startups this month for a free pilot — full access, no commitment.
+
+If your team is between 5–50 people and you've had at least one hiring regret in the last year, this was built for you.
+
+Comment "DevHire" or DM us and we'll set up a 20-minute walkthrough this week.</div>
+              <div class="post-hashtags">#DevHire #StartupIndia #TechHiring #FreeTrial #EngineeringTeams #CTOLife</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="strategy-section">
+          <div class="strategy-title">✦ Content Strategy for DevHire</div>
+          <div class="strategy-grid">
+            <div class="strategy-item">
+              <div class="s-label">Post Frequency</div>
+              <div class="s-val">Mon (data) · Wed (founder opinion) · Fri (practical tip or CTA)</div>
+            </div>
+            <div class="strategy-item">
+              <div class="s-label">Voice & Tone</div>
+              <div class="s-val">Confident and direct. Write like a founder who's seen the hiring problem up close — not a vendor.</div>
+            </div>
+            <div class="strategy-item">
+              <div class="s-label">Content Mix</div>
+              <div class="s-val">35% data & insights · 30% hot takes · 25% practical tips · 10% product CTAs</div>
+            </div>
+            <div class="strategy-item">
+              <div class="s-label">Growth Lever</div>
+              <div class="s-val">Tag startup founders and CTOs in opinion posts. Ask hiring managers to share their war stories.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section class="why-section" id="why">
+  <div class="why-top">
+    <h2 class="why-h2">Why clients<br>choose<br><em>this service.</em></h2>
+    <p class="why-desc">Most LinkedIn ghostwriters write generic posts that sound like every other startup. I write content that sounds like your actual founder — with real opinions, real stories, and a tone that doesn't make your audience cringe.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <div class="why-title">Niche expertise</div>
+      <div class="why-text">I write specifically for Indian tech startups — EdTech, HRTech, SaaS. I know the audience, the tone, the references that land.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <div class="why-title">Human, not robotic</div>
+      <div class="why-text">No AI fluff. No "I am pleased to share." Real sentences that real people actually say when they care about something.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <div class="why-title">Strategy included</div>
+      <div class="why-text">Every order comes with a content strategy — posting schedule, tone guide, content mix. Not just posts, but a plan.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div class="process-left">
+    <h2>How it<br><em>works.</em></h2>
+  </div>
+  <div class="process-steps">
+    <div class="p-step">
+      <div class="p-num">01</div>
+      <div>
+        <div class="p-title">You share your startup brief</div>
+        <div class="p-desc">Tell me about your startup, your audience, your tone, and what you want people to feel after reading your posts.</div>
+      </div>
+    </div>
+    <div class="p-step">
+      <div class="p-num">02</div>
+      <div>
+        <div class="p-title">I write the first draft</div>
+        <div class="p-desc">Within 24 hours you get 5 posts — each with a scroll-stopping first line, full body copy, and hashtags.</div>
+      </div>
+    </div>
+    <div class="p-step">
+      <div class="p-num">03</div>
+      <div>
+        <div class="p-title">We refine together</div>
+        <div class="p-desc">Two rounds of revisions included. We tweak tone, adjust facts, add your real stories — until it sounds exactly like you.</div>
+      </div>
+    </div>
+    <div class="p-step">
+      <div class="p-num">04</div>
+      <div>
+        <div class="p-title">You get a content strategy doc</div>
+        <div class="p-desc">Posting schedule, content mix, growth levers — a full LinkedIn plan, not just five posts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-footer" id="cta">
+  <div>
+    <h2 class="cta-h2">Ready to post content<br>your audience <em>actually reads?</em></h2>
+    <p class="cta-sub">Starting at ₹999 · 5 posts + strategy · 48h delivery · 2 revisions included</p>
+  </div>
+  <button class="btn-dark-big">Order on Fiverr →</button>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">content<span>craft</span></span>
+  <p>Portfolio sample · LinkedIn content for Indian tech startups</p>
+</footer>
+
+<script>
+// cursor
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+})();
+
+// tabs
+function switchTab(name,btn){
+  document.querySelectorAll('.client-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  btn.classList.add('active');
+}
+
+// post expand
+function togglePost(btn){
+  const full = btn.nextElementSibling;
+  const open = full.classList.toggle('open');
+  btn.classList.toggle('open',open);
+  btn.childNodes[0].textContent = open ? 'Collapse ' : 'Read full post ';
+}
+
+// fade up on scroll
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:0.12});
+document.querySelectorAll('.why-card,.p-step,.post-card').forEach(el=>{
+  el.classList.add('fade-up');obs.observe(el);
+});
+</script>
+</body>
+</html>
