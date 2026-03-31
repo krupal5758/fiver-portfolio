@@ -568,13 +568,14 @@ footer p{font-size:.78rem;color:rgba(245,240,232,.3)}
 
   <div class="clients-intro">
     <div>
-      <h2>Two startups.<br><em>Two niches.</em><br>Five posts each.</h2>
+      <h2>Three startups.<br><em>Three niches.</em><br>Five posts each.</h2>
     </div>
     <div>
       <!-- TABS -->
       <div class="tab-row">
         <button class="tab-btn active" onclick="switchTab('learnkaro',this)">LearnKaro — EdTech</button>
         <button class="tab-btn" onclick="switchTab('devhire',this)">DevHire — HRTech</button>
+        <button class="tab-btn" onclick="switchTab('cloudco',this)">CloudCo — SaaS</button>
       </div>
 
       <!-- LEARNKARO PANEL -->
@@ -895,6 +896,169 @@ Comment "DevHire" or DM us and we'll set up a 20-minute walkthrough this week.</
             <div class="strategy-item">
               <div class="s-label">Growth Lever</div>
               <div class="s-val">Tag startup founders and CTOs in opinion posts. Ask hiring managers to share their war stories.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLOUDCO PANEL -->
+      <div class="client-panel" id="panel-cloudco">
+        <div class="client-header">
+          <div>
+            <div class="client-name">CloudCo</div>
+            <div class="client-meta">B2B SaaS startup · Cloud infrastructure tools for Indian SMEs · Target: CTOs, tech leads & IT managers</div>
+          </div>
+          <div class="client-badge" style="background:var(--teal)">SaaS</div>
+        </div>
+
+        <div class="posts-grid">
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--teal)">01 — Founder Story</div>
+            <div class="post-hook">My last startup failed because we kept our servers on a single provider and the bill hit ₹18 lakh in one month. We didn't survive that.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">That was 2021. We had 12 engineers, a product that customers actually loved, and an AWS bill that wiped out our runway in six weeks.
+
+No one warned us. Not our investors, not our advisors, not the cloud providers themselves.
+
+I spent the next year figuring out exactly why Indian startups over-spend on cloud — and how to fix it without slowing down your engineering team.
+
+CloudCo was born from that wreckage.
+
+We help B2B SaaS teams in India cut their cloud costs by 35–60% without touching a single line of product code. Auto-scaling policies, reserved instance planning, multi-cloud routing — all managed for you.
+
+The worst part of watching that startup die wasn't the money. It was knowing it was entirely preventable.
+
+That's why we built this. So you don't lose what you built over an invoice.</div>
+              <div class="post-hashtags">#CloudCo #StartupIndia #CloudCosts #AWS #B2BSaaS #FounderStory #TechStartup</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--teal)">02 — Data & Stats</div>
+            <div class="post-hook">Indian SaaS startups overpay for cloud infrastructure by an average of 42%. Most don't know it until Series A due diligence.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">We audited 80 Indian B2B SaaS companies across seed to Series B last year. Here's what the data showed:
+
+→ 42% average cloud overspend vs. optimised benchmark
+→ 71% were running dev/staging workloads on production-grade instances
+→ Only 14% had any form of automated cost alerting
+→ The median team discovered the problem when investors asked about unit economics
+
+The problem isn't that Indian startups don't care about costs. It's that cloud pricing is deliberately complex and the defaults are always the most expensive option.
+
+AWS, GCP, and Azure are built for enterprise budgets. Indian SaaS teams building for SMEs need a different playbook.
+
+CloudCo gives you that playbook — and runs it for you.</div>
+              <div class="post-hashtags">#CloudCosts #IndianSaaS #StartupIndia #CloudCo #B2BSaaS #UnitEconomics #TechInfra</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--teal)">03 — Hot Take</div>
+            <div class="post-hook">Hiring a DevOps engineer before you optimise your cloud spend is like renovating your office before fixing the leaking roof.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">Unpopular opinion — but I've watched enough startups make this mistake to say it clearly:
+
+If your cloud bill is already 15–20% of your revenue and you're about to post a senior DevOps JD — stop.
+
+A great DevOps engineer will improve your deployment pipeline, your CI/CD, your uptime. But they won't sit down and audit 14 AWS services to find where you're haemorrhaging money.
+
+That's not their job. That's a specialised FinOps problem.
+
+The startups that solve cloud costs earliest are the ones that reach profitability fastest. Because every rupee saved on infra goes directly into your gross margin.
+
+You don't need another hire. You need a structured audit, a cost policy, and automation that enforces it.
+
+That's exactly what we built CloudCo to do.</div>
+              <div class="post-hashtags">#HotTake #CloudCo #DevOps #FinOps #StartupIndia #B2BSaaS #CloudSpend</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--teal)">04 — Practical Tip</div>
+            <div class="post-hook">Three things you can do this week to cut your AWS bill by 20% — without touching your product code.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">These won't require a DevOps overhaul. They take an afternoon.
+
+1. Kill zombie resources
+Go to AWS Cost Explorer → filter by "unused" → delete idle Elastic IPs, unattached EBS volumes, stopped EC2 instances. These cost money every hour you ignore them. Most startups find ₹30,000–₹80,000 of waste here instantly.
+
+2. Right-size your dev and staging environments
+Your dev environment doesn't need production-grade instances running 24/7. Switch them to smaller instance types and schedule auto-shutdown after business hours. Saves 25–40% on non-prod costs alone.
+
+3. Set a billing alert — today
+Go to AWS Budgets, set a threshold at 80% of last month's bill, and add an email alert. Sounds basic. Only 1 in 5 startups we audit has this set up.
+
+You can't optimise what you can't see.
+
+These three steps take 3–4 hours. They will save you real money this month.</div>
+              <div class="post-hashtags">#AWSCosts #CloudTips #StartupIndia #CloudCo #FinOps #B2BSaaS #TechInfra</div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-type-label" style="color:var(--teal)">05 — CTA Post</div>
+            <div class="post-hook">If you don't know exactly what's driving your cloud bill — your investors will find out before you do.</div>
+            <button class="post-expand-btn" onclick="togglePost(this)">
+              Read full post
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="post-full">
+              <div class="post-body-text">Every Series A investor will ask you about unit economics. Cloud cost as a percentage of revenue is one of the first numbers they pull.
+
+If that number is above 20% and you can't explain why — that's a red flag that delays term sheets.
+
+CloudCo runs a free cloud cost audit for Indian B2B SaaS startups. No consultants. No jargon. Just a clear report showing:
+→ Where your money is going
+→ What's safe to cut immediately
+→ What to optimise over the next 90 days
+
+We've done this for 80+ Indian startups. Median savings in the first 60 days: 38%.
+
+We're opening 8 audit slots this month.
+
+Comment "AUDIT" below or send us a DM and we'll get your report back within 5 business days.</div>
+              <div class="post-hashtags">#CloudCo #FreeTrial #StartupIndia #B2BSaaS #CloudCosts #SeriesA #FinOps</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="strategy-section">
+          <div class="strategy-title">✦ Content Strategy for CloudCo</div>
+          <div class="strategy-grid">
+            <div class="strategy-item">
+              <div class="s-label">Post Frequency</div>
+              <div class="s-val">Mon (data insight) · Wed (hot take or tip) · Fri (founder story or CTA)</div>
+            </div>
+            <div class="strategy-item">
+              <div class="s-label">Voice & Tone</div>
+              <div class="s-val">Founder who's been burned by this exact problem. Direct, credible, specific with numbers. Never salesy.</div>
+            </div>
+            <div class="strategy-item">
+              <div class="s-label">Content Mix</div>
+              <div class="s-val">35% data & benchmarks · 30% practical tips · 25% founder stories & hot takes · 10% CTAs</div>
+            </div>
+            <div class="strategy-item">
+              <div class="s-label">Growth Lever</div>
+              <div class="s-val">Target CTOs and engineering leads in comments. Use cost benchmarks as hooks — specific numbers drive shares and saves.</div>
             </div>
           </div>
         </div>
